@@ -43,8 +43,7 @@ describe('[Challenge] Unstoppable', function () {
         const AttackerContractFactory = await ethers.getContractFactory('UnstoppableAttacker', attacker);
         const attackerContract = await AttackerContractFactory.deploy(this.pool.address);
 
-        this.token.connect(attacker);
-        await this.token.transfer(attackerContract.address, ethers.utils.parseEther('1'));
+        await this.token.connect(attacker).transfer(attackerContract.address, ethers.utils.parseEther('1'));
         await attackerContract.executeFlashLoan(10);
     });
 
